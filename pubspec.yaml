@@ -1,0 +1,35 @@
+name: tr_store
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.2.3 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.4
+  get_it: ^7.6.7
+  dartz: ^0.10.1
+  dio: ^5.4.0
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  bloc_test: ^9.1.6
+  build_runner: ^2.4.8
+  mockito: ^5.4.4
+  mocktail: ^1.0.3
+  freezed: ^2.4.7
+  json_serializable: ^6.7.1
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
