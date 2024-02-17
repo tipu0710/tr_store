@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Product _$ProductFromJson(Map<String, dynamic> json) {
-  return _Product.fromJson(json);
+ProductEntity _$ProductEntityFromJson(Map<String, dynamic> json) {
+  return _ProductEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Product {
+mixin _$ProductEntity {
   int? get id => throw _privateConstructorUsedError;
   String? get slug => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
@@ -30,13 +30,15 @@ mixin _$Product {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
+  $ProductEntityCopyWith<ProductEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductCopyWith<$Res> {
-  factory $ProductCopyWith(Product value, $Res Function(Product) then) =
-      _$ProductCopyWithImpl<$Res, Product>;
+abstract class $ProductEntityCopyWith<$Res> {
+  factory $ProductEntityCopyWith(
+          ProductEntity value, $Res Function(ProductEntity) then) =
+      _$ProductEntityCopyWithImpl<$Res, ProductEntity>;
   @useResult
   $Res call(
       {int? id,
@@ -49,9 +51,9 @@ abstract class $ProductCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductCopyWithImpl<$Res, $Val extends Product>
-    implements $ProductCopyWith<$Res> {
-  _$ProductCopyWithImpl(this._value, this._then);
+class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
+    implements $ProductEntityCopyWith<$Res> {
+  _$ProductEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -103,10 +105,11 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 }
 
 /// @nodoc
-abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$$ProductImplCopyWith(
-          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
-      __$$ProductImplCopyWithImpl<$Res>;
+abstract class _$$ProductEntityImplCopyWith<$Res>
+    implements $ProductEntityCopyWith<$Res> {
+  factory _$$ProductEntityImplCopyWith(
+          _$ProductEntityImpl value, $Res Function(_$ProductEntityImpl) then) =
+      __$$ProductEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -120,11 +123,11 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ProductImplCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductImpl>
-    implements _$$ProductImplCopyWith<$Res> {
-  __$$ProductImplCopyWithImpl(
-      _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
+class __$$ProductEntityImplCopyWithImpl<$Res>
+    extends _$ProductEntityCopyWithImpl<$Res, _$ProductEntityImpl>
+    implements _$$ProductEntityImplCopyWith<$Res> {
+  __$$ProductEntityImplCopyWithImpl(
+      _$ProductEntityImpl _value, $Res Function(_$ProductEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -138,7 +141,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? image = freezed,
     Object? thumbnail = freezed,
   }) {
-    return _then(_$ProductImpl(
+    return _then(_$ProductEntityImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -173,8 +176,8 @@ class __$$ProductImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductImpl implements _Product {
-  const _$ProductImpl(
+class _$ProductEntityImpl implements _ProductEntity {
+  const _$ProductEntityImpl(
       {this.id,
       this.slug,
       this.url,
@@ -183,8 +186,8 @@ class _$ProductImpl implements _Product {
       this.image,
       this.thumbnail});
 
-  factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductImplFromJson(json);
+  factory _$ProductEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductEntityImplFromJson(json);
 
   @override
   final int? id;
@@ -203,14 +206,14 @@ class _$ProductImpl implements _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, slug: $slug, url: $url, title: $title, content: $content, image: $image, thumbnail: $thumbnail)';
+    return 'ProductEntity(id: $id, slug: $slug, url: $url, title: $title, content: $content, image: $image, thumbnail: $thumbnail)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProductImpl &&
+            other is _$ProductEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.url, url) || other.url == url) &&
@@ -229,28 +232,29 @@ class _$ProductImpl implements _Product {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
-      __$$ProductImplCopyWithImpl<_$ProductImpl>(this, _$identity);
+  _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
+      __$$ProductEntityImplCopyWithImpl<_$ProductEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProductImplToJson(
+    return _$$ProductEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _Product implements Product {
-  const factory _Product(
+abstract class _ProductEntity implements ProductEntity {
+  const factory _ProductEntity(
       {final int? id,
       final String? slug,
       final String? url,
       final String? title,
       final String? content,
       final String? image,
-      final String? thumbnail}) = _$ProductImpl;
+      final String? thumbnail}) = _$ProductEntityImpl;
 
-  factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
+  factory _ProductEntity.fromJson(Map<String, dynamic> json) =
+      _$ProductEntityImpl.fromJson;
 
   @override
   int? get id;
@@ -268,6 +272,6 @@ abstract class _Product implements Product {
   String? get thumbnail;
   @override
   @JsonKey(ignore: true)
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
+  _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

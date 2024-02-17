@@ -3,8 +3,8 @@ part 'product.freezed.dart';
 part 'product.g.dart';
 
 @freezed
-class Product with _$Product {
-  const factory Product({
+class ProductEntity with _$ProductEntity {
+  const factory ProductEntity({
     int? id,
     String? slug,
     String? url,
@@ -12,8 +12,8 @@ class Product with _$Product {
     String? content,
     String? image,
     String? thumbnail,
-  }) = _Product;
+  }) = _ProductEntity;
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
+  factory ProductEntity.fromJson(Map<String, dynamic> json) =>
+      _$ProductEntityFromJson(json);
 }
