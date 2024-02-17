@@ -1,9 +1,22 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'failure.freezed.dart';
 
-@freezed
-sealed class Failure with _$Failure {
-  const factory Failure.server(String message) = Server;
-  const factory Failure.connection(String message) = Connection;
-  const factory Failure.database(String message) = Database;
+import 'package:equatable/equatable.dart';
+
+abstract class Failure extends Equatable {
+  final String message;
+  const Failure(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class ServerFailure extends Failure {
+  const ServerFailure(String message) : super(message);
+}
+
+class ConnectionFailure extends Failure {
+  const ConnectionFailure(String message) : super(message);
+}
+
+class DatabaseFailure extends Failure {
+  const DatabaseFailure(String message) : super(message);
 }

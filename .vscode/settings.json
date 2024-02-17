@@ -1,6 +1,10 @@
 {
     "conventionalCommits.scopes": [
         "entities",
-        "repository"
+        "repository",
+        "data model"
+    ],
+    "cSpell.words": [
+        "usecases"
     ]
 }
