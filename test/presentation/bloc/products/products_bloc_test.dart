@@ -1,21 +1,25 @@
 import 'package:dartz/dartz.dart';
-import 'package:mockito/mockito.dart';
-import 'package:tr_store/domain/entities/product.dart';
-import 'package:tr_store/domain/usecases/get_product_list.dart';
 import 'package:flutter_test/flutter_test.dart';
-import '../../helpers/test_helper.mocks.dart';
+import 'package:mockito/mockito.dart';
+import 'package:tr_store/core/error/failure.dart';
+import 'package:tr_store/domain/entities/product.dart';
+import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
+import 'package:tr_store/presentation/bloc/products/products_event.dart';
+import 'package:tr_store/presentation/bloc/products/products_state.dart';
+import 'package:bloc_test/bloc_test.dart';
+
+import '../../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late GetProductListUseCase getProductListUseCase;
-  late MockProductRepositories mockProductRepositories;
+  late MockGetProductListUseCase mockGetProductListUseCase;
+  late ProductsBloc productBloc;
 
   setUp(() {
-    mockProductRepositories = MockProductRepositories();
-    getProductListUseCase =
-        GetProductListUseCase(productRepositories: mockProductRepositories);
+    mockGetProductListUseCase = MockGetProductListUseCase();
+    productBloc = ProductsBloc(mockGetProductListUseCase);
   });
 
-  const testProductEntity = ProductEntity(
+  const testProduct = ProductEntity(
     id: 1,
     slug: "lorem-ipsum",
     url: "https://jsonplaceholder.org/posts/lorem-ipsum",
@@ -28,13 +32,44 @@ void main() {
         "https://dummyimage.com/200x200/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org",
   );
 
-  test('Should get product list', () async {
-    //arrange
-    when(mockProductRepositories.getProducts())
-        .thenAnswer((realInvocation) async => const Right([testProductEntity]));
-    //act
-    final result = await getProductListUseCase.execute();
-    //assert
-    expect(result, const Right([testProductEntity]));
-  });
+  test(
+    'initial state should be empty',
+    () {
+      expect(productBloc.state, ProductsEmpty());
+    }
+  );
+  
+
+  blocTest<ProductsBloc,ProductsState>(
+    'should emit [ProductLoading, ProductLoaded] when data is gotten successfully',
+    build: () {
+      when(
+        mockGetProductListUseCase.execute()
+      ).thenAnswer((_) async => const Right([testProduct]));
+      return productBloc;
+    },
+    act: (bloc) => bloc.add(const OnProductsGet()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      ProductsLoading(),
+      const ProductsLoaded([testProduct])
+    ]
+  );
+
+
+  blocTest<ProductsBloc,ProductsState>(
+    'should emit [ProductLoading, ProductFailure] when get data is unsuccessful',
+    build: () {
+      when(
+        mockGetProductListUseCase.execute()
+      ).thenAnswer((_) async => const Left(ServerFailure('Server failure')));
+      return productBloc;
+    },
+    act: (bloc) => bloc.add(const OnProductsGet()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      ProductsLoading(),
+      const ProductsLoadFailure('Server failure'),
+    ]
+  );
 }

@@ -2,7 +2,8 @@
     "conventionalCommits.scopes": [
         "entities",
         "repository",
-        "data model"
+        "data model",
+        "bloc test"
     ],
     "cSpell.words": [
         "usecases"
