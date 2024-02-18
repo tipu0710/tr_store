@@ -1,23 +1,34 @@
-import 'package:dartz/dartz.dart';
+import 'dart:io';
+
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:tr_store/core/error/failure.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:tr_store/domain/entities/product.dart';
 import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
 import 'package:tr_store/presentation/bloc/products/products_event.dart';
 import 'package:tr_store/presentation/bloc/products/products_state.dart';
-import 'package:bloc_test/bloc_test.dart';
+import 'package:tr_store/presentation/pages/product_list/product_list_page.dart';
 
-import '../../../helpers/test_helper.mocks.dart';
+class MockProductBloc extends MockBloc<ProductsEvent, ProductsState>
+    implements ProductsBloc {}
 
 void main() {
-  late MockGetProductListUseCase mockGetProductListUseCase;
-  late ProductsBloc productBloc;
-
+  late MockProductBloc mockProductBloc;
   setUp(() {
-    mockGetProductListUseCase = MockGetProductListUseCase();
-    productBloc = ProductsBloc(mockGetProductListUseCase);
+    mockProductBloc = MockProductBloc();
+    HttpOverrides.global = null;
   });
+
+  Widget makeTestableWidget(Widget body) {
+    return BlocProvider<ProductsBloc>(
+      create: (context) => mockProductBloc,
+      child: MaterialApp(
+        home: body,
+      ),
+    );
+  }
 
   const testProduct = ProductEntity(
     id: 1,
@@ -33,44 +44,50 @@ void main() {
     userId: 1,
   );
 
-  test(
-    'initial state should be empty',
-    () {
-      expect(productBloc.state, ProductsEmpty());
-    }
-  );
-  
+  testWidgets(
+    'should find the empty sizebox when there is no product available',
+    (widgetTester) async {
+      //arrange
+      when(() => mockProductBloc.state)
+          .thenReturn(ProductsEmpty());
 
-  blocTest<ProductsBloc,ProductsState>(
-    'should emit [ProductLoading, ProductLoaded] when data is gotten successfully',
-    build: () {
-      when(
-        mockGetProductListUseCase.execute()
-      ).thenAnswer((_) async => const Right([testProduct]));
-      return productBloc;
+      //act
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const ProductListPage()));
+      var sizeBox = find.byKey(const ValueKey('empty list'));
+      expect(sizeBox, findsOneWidget);
     },
-    act: (bloc) => bloc.add(const OnProductsGet()),
-    wait: const Duration(milliseconds: 500),
-    expect: () => [
-      ProductsLoading(),
-      const ProductsLoaded([testProduct])
-    ]
   );
 
+  testWidgets(
+    'should show shimmer effect list when state is loading',
+    (widgetTester) async {
+      //arrange
+      when(() => mockProductBloc.state).thenReturn(ProductsLoading());
 
-  blocTest<ProductsBloc,ProductsState>(
-    'should emit [ProductLoading, ProductFailure] when get data is unsuccessful',
-    build: () {
-      when(
-        mockGetProductListUseCase.execute()
-      ).thenAnswer((_) async => const Left(ServerFailure('Server failure')));
-      return productBloc;
+      //act
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const ProductListPage()));
+
+      //assert
+      expect(
+          find.byKey(const ValueKey('product_list_loading')), findsOneWidget);
     },
-    act: (bloc) => bloc.add(const OnProductsGet()),
-    wait: const Duration(milliseconds: 500),
-    expect: () => [
-      ProductsLoading(),
-      const ProductsLoadFailure('Server failure'),
-    ]
+  );
+
+  testWidgets(
+    'should show widget contain the key lorem-ipsum when state is loaded',
+    (widgetTester) async {
+      //arrange
+      when(() => mockProductBloc.state)
+          .thenReturn(const ProductsLoaded([testProduct]));
+
+      //act
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const ProductListPage()));
+
+      //assert
+      expect(find.byKey(const ValueKey('lorem-ipsum')), findsOneWidget);
+    },
   );
 }

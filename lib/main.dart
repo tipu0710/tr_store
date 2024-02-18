@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tr_store/injection_container.dart';
 import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
-import 'package:tr_store/presentation/pages/product_list_page.dart';
+import 'package:tr_store/presentation/pages/product_list/product_list_page.dart';
 
 void main() {
   setupLocator();

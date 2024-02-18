@@ -3,7 +3,8 @@
         "entities",
         "repository",
         "data model",
-        "bloc test"
+        "bloc test",
+        "ui"
     ],
     "cSpell.words": [
         "usecases"

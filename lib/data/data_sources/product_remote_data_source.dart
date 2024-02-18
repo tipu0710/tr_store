@@ -14,7 +14,7 @@ class ProductRemoteDataSourcesImpl extends ProductRemoteDataSources {
 
   @override
   Future<List<ProductModel>> getProducts() async {
-    final response = await dio.post(Url.getProducts());
+    final response = await dio.get(Url.getProducts());
 
     if (response.statusCode == 200) {
       Iterable list = response.data;

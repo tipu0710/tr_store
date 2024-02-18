@@ -33,6 +33,7 @@ void main() {
         "https://dummyimage.com/800x430/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org",
     thumbnail:
         "https://dummyimage.com/200x200/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org",
+    userId: 1,
   );
 
   const testProductEntity = ProductEntity(
@@ -46,6 +47,7 @@ void main() {
         "https://dummyimage.com/800x430/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org",
     thumbnail:
         "https://dummyimage.com/200x200/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org",
+    userId: 1,
   );
 
   group('get product list', () {
