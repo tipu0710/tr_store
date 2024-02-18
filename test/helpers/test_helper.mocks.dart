@@ -3,20 +3,22 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:dio/dio.dart' as _i4;
+import 'package:dio/dio.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:tr_store/core/error/failure.dart' as _i6;
+import 'package:tr_store/core/error/failure.dart' as _i7;
+import 'package:tr_store/data/data_sources/product_details_remote_data_source.dart'
+    as _i11;
 import 'package:tr_store/data/data_sources/product_remote_data_source.dart'
-    as _i9;
-import 'package:tr_store/data/models/product_model.dart' as _i10;
-import 'package:tr_store/domain/entities/product.dart' as _i7;
+    as _i10;
+import 'package:tr_store/data/models/product_model.dart' as _i3;
+import 'package:tr_store/domain/entities/product.dart' as _i8;
 import 'package:tr_store/domain/repositories/product_details_repository.dart'
-    as _i8;
-import 'package:tr_store/domain/repositories/product_repositories.dart' as _i3;
-import 'package:tr_store/domain/usecases/get_product_list.dart' as _i11;
+    as _i9;
+import 'package:tr_store/domain/repositories/product_repositories.dart' as _i4;
+import 'package:tr_store/domain/usecases/get_product_list.dart' as _i12;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -41,9 +43,8 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-class _FakeProductRepositories_1 extends _i1.SmartFake
-    implements _i3.ProductRepositories {
-  _FakeProductRepositories_1(
+class _FakeProductModel_1 extends _i1.SmartFake implements _i3.ProductModel {
+  _FakeProductModel_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -52,8 +53,9 @@ class _FakeProductRepositories_1 extends _i1.SmartFake
         );
 }
 
-class _FakeBaseOptions_2 extends _i1.SmartFake implements _i4.BaseOptions {
-  _FakeBaseOptions_2(
+class _FakeProductRepositories_2 extends _i1.SmartFake
+    implements _i4.ProductRepositories {
+  _FakeProductRepositories_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -62,9 +64,8 @@ class _FakeBaseOptions_2 extends _i1.SmartFake implements _i4.BaseOptions {
         );
 }
 
-class _FakeHttpClientAdapter_3 extends _i1.SmartFake
-    implements _i4.HttpClientAdapter {
-  _FakeHttpClientAdapter_3(
+class _FakeBaseOptions_3 extends _i1.SmartFake implements _i5.BaseOptions {
+  _FakeBaseOptions_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -73,8 +74,9 @@ class _FakeHttpClientAdapter_3 extends _i1.SmartFake
         );
 }
 
-class _FakeTransformer_4 extends _i1.SmartFake implements _i4.Transformer {
-  _FakeTransformer_4(
+class _FakeHttpClientAdapter_4 extends _i1.SmartFake
+    implements _i5.HttpClientAdapter {
+  _FakeHttpClientAdapter_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -83,8 +85,8 @@ class _FakeTransformer_4 extends _i1.SmartFake implements _i4.Transformer {
         );
 }
 
-class _FakeInterceptors_5 extends _i1.SmartFake implements _i4.Interceptors {
-  _FakeInterceptors_5(
+class _FakeTransformer_5 extends _i1.SmartFake implements _i5.Transformer {
+  _FakeTransformer_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -93,8 +95,18 @@ class _FakeInterceptors_5 extends _i1.SmartFake implements _i4.Interceptors {
         );
 }
 
-class _FakeResponse_6<T1> extends _i1.SmartFake implements _i4.Response<T1> {
-  _FakeResponse_6(
+class _FakeInterceptors_6 extends _i1.SmartFake implements _i5.Interceptors {
+  _FakeInterceptors_6(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeResponse_7<T1> extends _i1.SmartFake implements _i5.Response<T1> {
+  _FakeResponse_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -107,41 +119,41 @@ class _FakeResponse_6<T1> extends _i1.SmartFake implements _i4.Response<T1> {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockProductRepositories extends _i1.Mock
-    implements _i3.ProductRepositories {
+    implements _i4.ProductRepositories {
   MockProductRepositories() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.Either<_i6.Failure, List<_i7.ProductEntity>>> getProducts() =>
+  _i6.Future<_i2.Either<_i7.Failure, List<_i8.ProductEntity>>> getProducts() =>
       (super.noSuchMethod(
         Invocation.method(
           #getProducts,
           [],
         ),
         returnValue:
-            _i5.Future<_i2.Either<_i6.Failure, List<_i7.ProductEntity>>>.value(
-                _FakeEither_0<_i6.Failure, List<_i7.ProductEntity>>(
+            _i6.Future<_i2.Either<_i7.Failure, List<_i8.ProductEntity>>>.value(
+                _FakeEither_0<_i7.Failure, List<_i8.ProductEntity>>(
           this,
           Invocation.method(
             #getProducts,
             [],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.ProductEntity>>>);
+      ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.ProductEntity>>>);
 }
 
 /// A class which mocks [ProductDetailsRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockProductDetailsRepository extends _i1.Mock
-    implements _i8.ProductDetailsRepository {
+    implements _i9.ProductDetailsRepository {
   MockProductDetailsRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.Either<_i6.Failure, _i7.ProductEntity>> getProductDetails(
+  _i6.Future<_i2.Either<_i7.Failure, _i8.ProductEntity>> getProductDetails(
           int? id) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -149,93 +161,119 @@ class MockProductDetailsRepository extends _i1.Mock
           [id],
         ),
         returnValue:
-            _i5.Future<_i2.Either<_i6.Failure, _i7.ProductEntity>>.value(
-                _FakeEither_0<_i6.Failure, _i7.ProductEntity>(
+            _i6.Future<_i2.Either<_i7.Failure, _i8.ProductEntity>>.value(
+                _FakeEither_0<_i7.Failure, _i8.ProductEntity>(
           this,
           Invocation.method(
             #getProductDetails,
             [id],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.Failure, _i7.ProductEntity>>);
+      ) as _i6.Future<_i2.Either<_i7.Failure, _i8.ProductEntity>>);
 }
 
 /// A class which mocks [ProductRemoteDataSources].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockProductRemoteDataSources extends _i1.Mock
-    implements _i9.ProductRemoteDataSources {
+    implements _i10.ProductRemoteDataSources {
   MockProductRemoteDataSources() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<_i10.ProductModel>> getProducts() => (super.noSuchMethod(
+  _i6.Future<List<_i3.ProductModel>> getProducts() => (super.noSuchMethod(
         Invocation.method(
           #getProducts,
           [],
         ),
         returnValue:
-            _i5.Future<List<_i10.ProductModel>>.value(<_i10.ProductModel>[]),
-      ) as _i5.Future<List<_i10.ProductModel>>);
+            _i6.Future<List<_i3.ProductModel>>.value(<_i3.ProductModel>[]),
+      ) as _i6.Future<List<_i3.ProductModel>>);
+}
+
+/// A class which mocks [ProductDetailsRemoteDataSources].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProductDetailsRemoteDataSources extends _i1.Mock
+    implements _i11.ProductDetailsRemoteDataSources {
+  MockProductDetailsRemoteDataSources() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.Future<_i3.ProductModel> getProductDetails(int? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getProductDetails,
+          [id],
+        ),
+        returnValue: _i6.Future<_i3.ProductModel>.value(_FakeProductModel_1(
+          this,
+          Invocation.method(
+            #getProductDetails,
+            [id],
+          ),
+        )),
+      ) as _i6.Future<_i3.ProductModel>);
 }
 
 /// A class which mocks [GetProductListUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetProductListUseCase extends _i1.Mock
-    implements _i11.GetProductListUseCase {
+    implements _i12.GetProductListUseCase {
   MockGetProductListUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.ProductRepositories get productRepositories => (super.noSuchMethod(
+  _i4.ProductRepositories get productRepositories => (super.noSuchMethod(
         Invocation.getter(#productRepositories),
-        returnValue: _FakeProductRepositories_1(
+        returnValue: _FakeProductRepositories_2(
           this,
           Invocation.getter(#productRepositories),
         ),
-      ) as _i3.ProductRepositories);
+      ) as _i4.ProductRepositories);
 
   @override
-  _i5.Future<_i2.Either<_i6.Failure, List<_i7.ProductEntity>>> execute() =>
+  _i6.Future<_i2.Either<_i7.Failure, List<_i8.ProductEntity>>> execute() =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [],
         ),
         returnValue:
-            _i5.Future<_i2.Either<_i6.Failure, List<_i7.ProductEntity>>>.value(
-                _FakeEither_0<_i6.Failure, List<_i7.ProductEntity>>(
+            _i6.Future<_i2.Either<_i7.Failure, List<_i8.ProductEntity>>>.value(
+                _FakeEither_0<_i7.Failure, List<_i8.ProductEntity>>(
           this,
           Invocation.method(
             #execute,
             [],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.ProductEntity>>>);
+      ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.ProductEntity>>>);
 }
 
 /// A class which mocks [Dio].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpClient extends _i1.Mock implements _i4.Dio {
+class MockHttpClient extends _i1.Mock implements _i5.Dio {
   MockHttpClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.BaseOptions get options => (super.noSuchMethod(
+  _i5.BaseOptions get options => (super.noSuchMethod(
         Invocation.getter(#options),
-        returnValue: _FakeBaseOptions_2(
+        returnValue: _FakeBaseOptions_3(
           this,
           Invocation.getter(#options),
         ),
-      ) as _i4.BaseOptions);
+      ) as _i5.BaseOptions);
 
   @override
-  set options(_i4.BaseOptions? _options) => super.noSuchMethod(
+  set options(_i5.BaseOptions? _options) => super.noSuchMethod(
         Invocation.setter(
           #options,
           _options,
@@ -244,16 +282,16 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
       );
 
   @override
-  _i4.HttpClientAdapter get httpClientAdapter => (super.noSuchMethod(
+  _i5.HttpClientAdapter get httpClientAdapter => (super.noSuchMethod(
         Invocation.getter(#httpClientAdapter),
-        returnValue: _FakeHttpClientAdapter_3(
+        returnValue: _FakeHttpClientAdapter_4(
           this,
           Invocation.getter(#httpClientAdapter),
         ),
-      ) as _i4.HttpClientAdapter);
+      ) as _i5.HttpClientAdapter);
 
   @override
-  set httpClientAdapter(_i4.HttpClientAdapter? _httpClientAdapter) =>
+  set httpClientAdapter(_i5.HttpClientAdapter? _httpClientAdapter) =>
       super.noSuchMethod(
         Invocation.setter(
           #httpClientAdapter,
@@ -263,16 +301,16 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
       );
 
   @override
-  _i4.Transformer get transformer => (super.noSuchMethod(
+  _i5.Transformer get transformer => (super.noSuchMethod(
         Invocation.getter(#transformer),
-        returnValue: _FakeTransformer_4(
+        returnValue: _FakeTransformer_5(
           this,
           Invocation.getter(#transformer),
         ),
-      ) as _i4.Transformer);
+      ) as _i5.Transformer);
 
   @override
-  set transformer(_i4.Transformer? _transformer) => super.noSuchMethod(
+  set transformer(_i5.Transformer? _transformer) => super.noSuchMethod(
         Invocation.setter(
           #transformer,
           _transformer,
@@ -281,13 +319,13 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
       );
 
   @override
-  _i4.Interceptors get interceptors => (super.noSuchMethod(
+  _i5.Interceptors get interceptors => (super.noSuchMethod(
         Invocation.getter(#interceptors),
-        returnValue: _FakeInterceptors_5(
+        returnValue: _FakeInterceptors_6(
           this,
           Invocation.getter(#interceptors),
         ),
-      ) as _i4.Interceptors);
+      ) as _i5.Interceptors);
 
   @override
   void close({bool? force = false}) => super.noSuchMethod(
@@ -300,12 +338,12 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
       );
 
   @override
-  _i5.Future<_i4.Response<T>> head<T>(
+  _i6.Future<_i5.Response<T>> head<T>(
     String? path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -318,7 +356,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #cancelToken: cancelToken,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #head,
@@ -331,14 +369,14 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> headUri<T>(
+  _i6.Future<_i5.Response<T>> headUri<T>(
     Uri? uri, {
     Object? data,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -350,7 +388,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #cancelToken: cancelToken,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #headUri,
@@ -362,16 +400,16 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> get<T>(
+  _i6.Future<_i5.Response<T>> get<T>(
     String? path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -385,7 +423,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #get,
@@ -399,15 +437,15 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> getUri<T>(
+  _i6.Future<_i5.Response<T>> getUri<T>(
     Uri? uri, {
     Object? data,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -420,7 +458,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #getUri,
@@ -433,17 +471,17 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> post<T>(
+  _i6.Future<_i5.Response<T>> post<T>(
     String? path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -458,7 +496,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #post,
@@ -473,16 +511,16 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> postUri<T>(
+  _i6.Future<_i5.Response<T>> postUri<T>(
     Uri? uri, {
     Object? data,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -496,7 +534,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #postUri,
@@ -510,17 +548,17 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> put<T>(
+  _i6.Future<_i5.Response<T>> put<T>(
     String? path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -535,7 +573,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #put,
@@ -550,16 +588,16 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> putUri<T>(
+  _i6.Future<_i5.Response<T>> putUri<T>(
     Uri? uri, {
     Object? data,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -573,7 +611,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #putUri,
@@ -587,17 +625,17 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> patch<T>(
+  _i6.Future<_i5.Response<T>> patch<T>(
     String? path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -612,7 +650,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #patch,
@@ -627,16 +665,16 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> patchUri<T>(
+  _i6.Future<_i5.Response<T>> patchUri<T>(
     Uri? uri, {
     Object? data,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -650,7 +688,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #patchUri,
@@ -664,15 +702,15 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> delete<T>(
+  _i6.Future<_i5.Response<T>> delete<T>(
     String? path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -685,7 +723,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #cancelToken: cancelToken,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #delete,
@@ -698,14 +736,14 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> deleteUri<T>(
+  _i6.Future<_i5.Response<T>> deleteUri<T>(
     Uri? uri, {
     Object? data,
-    _i4.Options? options,
-    _i4.CancelToken? cancelToken,
+    _i5.Options? options,
+    _i5.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -717,7 +755,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #cancelToken: cancelToken,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #deleteUri,
@@ -729,19 +767,19 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<dynamic>> download(
+  _i6.Future<_i5.Response<dynamic>> download(
     String? urlPath,
     dynamic savePath, {
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.ProgressCallback? onReceiveProgress,
     Map<String, dynamic>? queryParameters,
-    _i4.CancelToken? cancelToken,
+    _i5.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
-    _i4.Options? options,
+    _i5.Options? options,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -761,7 +799,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
           },
         ),
         returnValue:
-            _i5.Future<_i4.Response<dynamic>>.value(_FakeResponse_6<dynamic>(
+            _i6.Future<_i5.Response<dynamic>>.value(_FakeResponse_7<dynamic>(
           this,
           Invocation.method(
             #download,
@@ -780,18 +818,18 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<dynamic>>);
+      ) as _i6.Future<_i5.Response<dynamic>>);
 
   @override
-  _i5.Future<_i4.Response<dynamic>> downloadUri(
+  _i6.Future<_i5.Response<dynamic>> downloadUri(
     Uri? uri,
     dynamic savePath, {
-    _i4.ProgressCallback? onReceiveProgress,
-    _i4.CancelToken? cancelToken,
+    _i5.ProgressCallback? onReceiveProgress,
+    _i5.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
-    _i4.Options? options,
+    _i5.Options? options,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -810,7 +848,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
           },
         ),
         returnValue:
-            _i5.Future<_i4.Response<dynamic>>.value(_FakeResponse_6<dynamic>(
+            _i6.Future<_i5.Response<dynamic>>.value(_FakeResponse_7<dynamic>(
           this,
           Invocation.method(
             #downloadUri,
@@ -828,17 +866,17 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<dynamic>>);
+      ) as _i6.Future<_i5.Response<dynamic>>);
 
   @override
-  _i5.Future<_i4.Response<T>> request<T>(
+  _i6.Future<_i5.Response<T>> request<T>(
     String? url, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i4.CancelToken? cancelToken,
-    _i4.Options? options,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.CancelToken? cancelToken,
+    _i5.Options? options,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -853,7 +891,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #request,
@@ -868,16 +906,16 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> requestUri<T>(
+  _i6.Future<_i5.Response<T>> requestUri<T>(
     Uri? uri, {
     Object? data,
-    _i4.CancelToken? cancelToken,
-    _i4.Options? options,
-    _i4.ProgressCallback? onSendProgress,
-    _i4.ProgressCallback? onReceiveProgress,
+    _i5.CancelToken? cancelToken,
+    _i5.Options? options,
+    _i5.ProgressCallback? onSendProgress,
+    _i5.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -891,7 +929,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             #onReceiveProgress: onReceiveProgress,
           },
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #requestUri,
@@ -905,21 +943,21 @@ class MockHttpClient extends _i1.Mock implements _i4.Dio {
             },
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 
   @override
-  _i5.Future<_i4.Response<T>> fetch<T>(_i4.RequestOptions? requestOptions) =>
+  _i6.Future<_i5.Response<T>> fetch<T>(_i5.RequestOptions? requestOptions) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetch,
           [requestOptions],
         ),
-        returnValue: _i5.Future<_i4.Response<T>>.value(_FakeResponse_6<T>(
+        returnValue: _i6.Future<_i5.Response<T>>.value(_FakeResponse_7<T>(
           this,
           Invocation.method(
             #fetch,
             [requestOptions],
           ),
         )),
-      ) as _i5.Future<_i4.Response<T>>);
+      ) as _i6.Future<_i5.Response<T>>);
 }
