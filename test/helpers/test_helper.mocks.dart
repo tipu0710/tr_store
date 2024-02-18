@@ -10,11 +10,13 @@ import 'package:dio/dio.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:tr_store/core/error/failure.dart' as _i6;
 import 'package:tr_store/data/data_sources/product_remote_data_source.dart'
-    as _i8;
-import 'package:tr_store/data/models/product_model.dart' as _i9;
+    as _i9;
+import 'package:tr_store/data/models/product_model.dart' as _i10;
 import 'package:tr_store/domain/entities/product.dart' as _i7;
+import 'package:tr_store/domain/repositories/product_details_repository.dart'
+    as _i8;
 import 'package:tr_store/domain/repositories/product_repositories.dart' as _i3;
-import 'package:tr_store/domain/usecases/get_product_list.dart' as _i10;
+import 'package:tr_store/domain/usecases/get_product_list.dart' as _i11;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -129,31 +131,60 @@ class MockProductRepositories extends _i1.Mock
       ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.ProductEntity>>>);
 }
 
+/// A class which mocks [ProductDetailsRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProductDetailsRepository extends _i1.Mock
+    implements _i8.ProductDetailsRepository {
+  MockProductDetailsRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i2.Either<_i6.Failure, _i7.ProductEntity>> getProductDetails(
+          int? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getProductDetails,
+          [id],
+        ),
+        returnValue:
+            _i5.Future<_i2.Either<_i6.Failure, _i7.ProductEntity>>.value(
+                _FakeEither_0<_i6.Failure, _i7.ProductEntity>(
+          this,
+          Invocation.method(
+            #getProductDetails,
+            [id],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i6.Failure, _i7.ProductEntity>>);
+}
+
 /// A class which mocks [ProductRemoteDataSources].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockProductRemoteDataSources extends _i1.Mock
-    implements _i8.ProductRemoteDataSources {
+    implements _i9.ProductRemoteDataSources {
   MockProductRemoteDataSources() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<_i9.ProductModel>> getProducts() => (super.noSuchMethod(
+  _i5.Future<List<_i10.ProductModel>> getProducts() => (super.noSuchMethod(
         Invocation.method(
           #getProducts,
           [],
         ),
         returnValue:
-            _i5.Future<List<_i9.ProductModel>>.value(<_i9.ProductModel>[]),
-      ) as _i5.Future<List<_i9.ProductModel>>);
+            _i5.Future<List<_i10.ProductModel>>.value(<_i10.ProductModel>[]),
+      ) as _i5.Future<List<_i10.ProductModel>>);
 }
 
 /// A class which mocks [GetProductListUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetProductListUseCase extends _i1.Mock
-    implements _i10.GetProductListUseCase {
+    implements _i11.GetProductListUseCase {
   MockGetProductListUseCase() {
     _i1.throwOnMissingStub(this);
   }
