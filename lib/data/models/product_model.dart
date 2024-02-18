@@ -1,4 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:tr_store/domain/entities/product.dart';
 part 'product_model.g.dart';
 
