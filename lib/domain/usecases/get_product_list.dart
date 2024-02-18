@@ -9,6 +9,6 @@ class GetProductListUseCase {
   GetProductListUseCase({required this.productRepositories});
 
   Future<Either<Failure, List<ProductEntity>>> execute() {
-    return productRepositories.getProduct();
+    return productRepositories.getProducts();
   }
 }
