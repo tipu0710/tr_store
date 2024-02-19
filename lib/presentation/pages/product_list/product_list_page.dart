@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
 import 'package:tr_store/presentation/bloc/products/products_event.dart';
 import 'package:tr_store/presentation/bloc/products/products_state.dart';
-import 'package:tr_store/presentation/pages/product_appbar.dart';
+import 'package:tr_store/presentation/pages/helper/product_appbar.dart';
 import 'package:tr_store/presentation/pages/product_list/product_list_loaded.dart';
 import 'package:tr_store/presentation/pages/product_list/product_list_loading.dart';
 

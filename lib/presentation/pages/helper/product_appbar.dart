@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tr_store/presentation/pages/helper/cart_icon.dart';
 
 class ProductAppbar extends StatelessWidget implements PreferredSizeWidget {
   const ProductAppbar({super.key});
@@ -16,10 +16,7 @@ class ProductAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: const [
         Padding(
           padding: EdgeInsets.only(right: 20),
-          child: Badge(
-            label: Text('0'),
-            child: Icon(CupertinoIcons.shopping_cart),
-          ),
+          child: CartIcon(),
         ),
       ],
     );

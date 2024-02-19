@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_state.dart';
-import 'package:tr_store/presentation/pages/product_appbar.dart';
+import 'package:tr_store/presentation/pages/helper/product_appbar.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({super.key});
