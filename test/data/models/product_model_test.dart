@@ -56,6 +56,8 @@ void main() {
             "https://dummyimage.com/800x430/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org",
         "thumbnail":
             "https://dummyimage.com/200x200/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org",
+        "primaryId": null,
+        "userId": 1,
       };
 
       expect(result, equals(expectedJsonMap));

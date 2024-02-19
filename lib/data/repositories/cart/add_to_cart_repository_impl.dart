@@ -22,7 +22,6 @@ class AddToCartRepositoryImpl implements AddToCartRepository {
         title: productEntity.title,
         url: productEntity.url,
         userId: productEntity.userId,
-        count: productEntity.count,
       );
       final taskModel = await addToCartLocalDataSource.addToCart(productModel);
       return Right(taskModel.toEntity());

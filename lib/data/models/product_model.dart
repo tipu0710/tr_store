@@ -13,7 +13,7 @@ class ProductModel extends ProductEntity {
     required super.image,
     required super.thumbnail,
     required super.userId,
-    super.count = 0,
+    @JsonKey(includeToJson: false, includeFromJson: true) super.primaryId,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -29,5 +29,6 @@ class ProductModel extends ProductEntity {
         image: image,
         thumbnail: thumbnail,
         userId: userId,
+        primaryId: primaryId,
       );
 }

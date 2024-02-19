@@ -21,37 +21,46 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _updateProduct();
   }
 
+  Future<List<ProductEntity>> _getAllProduct() async {
+    var list = await _allCartProductUseCase.execute();
+    var result = list.fold<List<ProductEntity>>((l) {
+      return [];
+    }, (r) {
+      return r;
+    });
+
+    return result;
+  }
+
   void _getAllCartProduct() {
     on<OnCartGet>((event, emit) async {
       emit(CartLoading());
-      var list = await _allCartProductUseCase.execute();
-      var result = list.fold<List<ProductEntity>>((l) {
-        return [];
-      }, (r) {
-        return r;
-      });
+      var result = await _getAllProduct();
       emit(CartLoaded(result));
     });
   }
 
   void _deleteCart() {
     on<OnCartDelete>((event, emit) async {
-      await _deleteCartUsecases.execute(event.slug);
-      _getAllCartProduct();
+      await _deleteCartUsecases.execute(event.primaryId);
+      var result = await _getAllProduct();
+      emit(CartLoaded(result));
     });
   }
 
   void _updateProduct() {
     on<OnCartUpdate>((event, emit) async {
       await _updateCartUsecases.execute(event.productEntity);
-      _getAllCartProduct();
+      var result = await _getAllProduct();
+      emit(CartLoaded(result));
     });
   }
 
   void _addProduct() {
     on<OnCartAdd>((event, emit) async {
       await _addToCartUseCase.execute(event.productEntity);
-      _getAllCartProduct();
+      var result = await _getAllProduct();
+      emit(CartLoaded(result));
     });
   }
 }

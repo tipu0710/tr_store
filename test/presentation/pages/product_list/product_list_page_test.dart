@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:tr_store/domain/entities/product.dart';
+import 'package:tr_store/presentation/bloc/cart/cart_bloc.dart';
+import 'package:tr_store/presentation/bloc/cart/cart_event.dart';
+import 'package:tr_store/presentation/bloc/cart/cart_state.dart';
 import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
 import 'package:tr_store/presentation/bloc/products/products_event.dart';
 import 'package:tr_store/presentation/bloc/products/products_state.dart';
@@ -14,16 +17,23 @@ import 'package:tr_store/presentation/pages/product_list/product_list_page.dart'
 class MockProductBloc extends MockBloc<ProductsEvent, ProductsState>
     implements ProductsBloc {}
 
+class MockCartBloc extends MockBloc<CartEvent, CartState> implements CartBloc {}
+
 void main() {
   late MockProductBloc mockProductBloc;
+  late MockCartBloc mockCartBloc;
   setUp(() {
     mockProductBloc = MockProductBloc();
+    mockCartBloc = MockCartBloc();
     HttpOverrides.global = null;
   });
 
   Widget makeTestableWidget(Widget body) {
-    return BlocProvider<ProductsBloc>(
-      create: (context) => mockProductBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ProductsBloc>(create: (_) => mockProductBloc),
+        BlocProvider<CartBloc>(create: (_) => mockCartBloc),
+      ],
       child: MaterialApp(
         home: body,
       ),
@@ -48,8 +58,8 @@ void main() {
     'should find the empty sizebox when there is no product available',
     (widgetTester) async {
       //arrange
-      when(() => mockProductBloc.state)
-          .thenReturn(ProductsEmpty());
+      when(() => mockProductBloc.state).thenReturn(ProductsEmpty());
+      when(() => mockCartBloc.state).thenReturn(const CartLoaded([]));
 
       //act
       await widgetTester
@@ -64,6 +74,7 @@ void main() {
     (widgetTester) async {
       //arrange
       when(() => mockProductBloc.state).thenReturn(ProductsLoading());
+      when(() => mockCartBloc.state).thenReturn(const CartLoaded([]));
 
       //act
       await widgetTester
@@ -81,6 +92,7 @@ void main() {
       //arrange
       when(() => mockProductBloc.state)
           .thenReturn(const ProductsLoaded([testProduct]));
+      when(() => mockCartBloc.state).thenReturn(const CartLoaded([]));
 
       //act
       await widgetTester

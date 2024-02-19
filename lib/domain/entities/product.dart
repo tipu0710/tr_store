@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class ProductEntity extends Equatable {
   final int id;
+  final int? primaryId;
   final String slug;
   final String url;
   final String title;
@@ -9,7 +10,6 @@ class ProductEntity extends Equatable {
   final String image;
   final String thumbnail;
   final int userId;
-  final int count;
 
   const ProductEntity({
     required this.id,
@@ -20,7 +20,7 @@ class ProductEntity extends Equatable {
     required this.image,
     required this.thumbnail,
     required this.userId,
-    this.count = 0,
+    this.primaryId,
   });
 
   @override

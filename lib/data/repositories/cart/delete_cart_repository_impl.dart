@@ -9,9 +9,9 @@ class DeleteCartRepositoryImpl implements DeleteCartRepository {
   const DeleteCartRepositoryImpl({required this.cartDeleteLocalDataSource});
 
   @override
-  Future<Either<Failure, bool>> deleteCartProduct(String slug) async {
+  Future<Either<Failure, bool>> deleteCartProduct(int primaryId) async {
     try {
-      final count = await cartDeleteLocalDataSource.deleteCart(slug);
+      final count = await cartDeleteLocalDataSource.deleteCart(primaryId);
       return Right(count);
     } on LocalDatabaseException {
       return const Left(DatabaseFailure(errorAddTask));

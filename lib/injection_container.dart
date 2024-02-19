@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:tr_store/data/data_sources/cart/add_to_cart_local_data_source.dart';
 import 'package:tr_store/data/data_sources/cart/all_cart_product_local_data_source.dart';
 import 'package:tr_store/data/data_sources/cart/cart_update_local_data_source.dart';
@@ -25,6 +28,7 @@ import 'package:tr_store/domain/usecases/cart/update_cart_usecases.dart';
 import 'package:tr_store/domain/usecases/get_product_details.dart';
 import 'package:tr_store/domain/usecases/get_product_list.dart';
 import 'package:tr_store/presentation/bloc/cart/cart_bloc.dart';
+import 'package:tr_store/presentation/bloc/network/network_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_bloc.dart';
 import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
 import 'package:tr_store/service/db.dart';
@@ -37,6 +41,7 @@ void setupLocator() {
   locator.registerFactory(() => ProductsDetailsBloc(locator()));
   locator.registerFactory(
       () => CartBloc(locator(), locator(), locator(), locator()));
+  locator.registerFactory(() => NetworkBloc(locator()));
 
   //usecases
   locator.registerLazySingleton(
@@ -83,4 +88,7 @@ void setupLocator() {
   //external
   locator.registerLazySingleton(() => Dio());
   locator.registerLazySingleton(() => DbService());
+  locator.registerLazySingleton(() => InternetConnectionChecker());
+  locator.registerLazySingleton<Stream<InternetConnectionStatus>>(
+      () => locator<InternetConnectionChecker>().onStatusChange);
 }

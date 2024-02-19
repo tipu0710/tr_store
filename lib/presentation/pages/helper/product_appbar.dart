@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tr_store/presentation/pages/helper/cart_icon.dart';
+import 'package:tr_store/presentation/pages/helper/network.dart';
 
 class ProductAppbar extends StatelessWidget implements PreferredSizeWidget {
   const ProductAppbar({super.key});
@@ -9,6 +10,10 @@ class ProductAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       elevation: 5,
+      bottom: const PreferredSize(
+        preferredSize: Size.fromHeight(20),
+        child: Network(),
+      ),
       title: Image.asset(
         'assets/images/tr_store_logo.png',
         width: MediaQuery.of(context).size.width / 3,
@@ -21,7 +26,7 @@ class ProductAppbar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-  
+
   @override
-  Size get preferredSize => const Size.fromHeight(56);
+  Size get preferredSize => const Size.fromHeight(60);
 }

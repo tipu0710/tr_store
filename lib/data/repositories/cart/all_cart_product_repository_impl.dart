@@ -23,7 +23,7 @@ class AllCartProductRepositoryImpl implements AllCartProductRepository {
           title: productModel.title,
           url: productModel.url,
           userId: productModel.userId,
-          count: productModel.count,
+          primaryId: productModel.primaryId,
         );
       }).toList();
       return Right(result);

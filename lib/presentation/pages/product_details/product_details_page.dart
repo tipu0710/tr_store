@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tr_store/presentation/bloc/cart/cart_bloc.dart';
+import 'package:tr_store/presentation/bloc/cart/cart_event.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_state.dart';
 import 'package:tr_store/presentation/pages/helper/product_appbar.dart';
@@ -60,7 +62,22 @@ class ProductDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<CartBloc>().add(OnCartAdd(state.result));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            duration: Duration(seconds: 2),
+                            backgroundColor: Colors.green,
+                            content: Text(
+                              'Added to cart!',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         surfaceTintColor: Colors.red,
                         backgroundColor: Colors.red,

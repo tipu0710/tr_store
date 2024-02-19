@@ -29,8 +29,8 @@ class OnCartUpdate extends CartEvent {
 }
 
 class OnCartDelete extends CartEvent {
-  final String slug;
-  const OnCartDelete(this.slug);
+  final int primaryId;
+  const OnCartDelete(this.primaryId);
   @override
-  List<Object?> get props => [slug];
+  List<Object?> get props => [primaryId];
 }

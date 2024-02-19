@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tr_store/injection_container.dart';
 import 'package:tr_store/presentation/bloc/cart/cart_bloc.dart';
+import 'package:tr_store/presentation/bloc/network/network_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_bloc.dart';
 import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
 import 'package:tr_store/presentation/pages/product_list/product_list_page.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => locator<CartBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => locator<NetworkBloc>(),
         ),
       ],
       child: MaterialApp(

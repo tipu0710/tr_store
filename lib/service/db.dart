@@ -13,7 +13,7 @@ class DbService {
     }
 
     String path = join(await getDatabasesPath(), 'cart_item.db');
-    _db = await openDatabase(path, version: 1, onCreate: (Database db, int v) {
+    _db = await openDatabase(path, version: 2, onCreate: (Database db, int v) {
       db.execute('''
           CREATE TABLE products(
             primaryId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,8 +24,7 @@ class DbService {
             content TEXT,
             image TEXT,
             thumbnail TEXT,
-            userId INTEGER,
-            count INTEGER
+            userId INTEGER
           );
         ''').catchError((val) => log(val));
     });
@@ -39,18 +38,24 @@ class DbService {
 
   Future<int> updateItem(ProductModel productModel) async {
     Database db = await createDB();
+    if (productModel.primaryId == null) {
+      return -1;
+    }
     return db.update('products', productModel.toJson(),
-        where: 'slug = ?', whereArgs: [productModel.slug]);
+        where: 'primaryId = ?', whereArgs: [productModel.primaryId]);
   }
 
   Future<List<ProductModel>> allItems() async {
     Database db = await createDB();
     var list = await db.query('products');
-    return list.map((e) => ProductModel.fromJson(e)).toList();
+    return list.map((e) {
+      return ProductModel.fromJson(e);
+    }).toList();
   }
 
-  Future<int> deleteItem(String slug) async {
+  Future<int> deleteItem(int primaryId) async {
     Database db = await createDB();
-    return db.delete('products', where: 'slug = ?', whereArgs: [slug]);
+    return db
+        .delete('products', where: 'primaryId = ?', whereArgs: [primaryId]);
   }
 }

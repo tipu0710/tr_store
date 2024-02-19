@@ -23,7 +23,6 @@ class UpdateCartRepositoryImpl implements UpdateCartRepository {
         title: productEntity.title,
         url: productEntity.url,
         userId: productEntity.userId,
-        count: productEntity.count,
       );
       final taskModel =
           await cartUpdateLocalDataSource.updateCart(productModel);

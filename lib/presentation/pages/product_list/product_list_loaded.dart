@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tr_store/domain/entities/product.dart';
+import 'package:tr_store/presentation/bloc/cart/cart_bloc.dart';
+import 'package:tr_store/presentation/bloc/cart/cart_event.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_details/product_details_event.dart';
 import 'package:tr_store/presentation/pages/product_details/product_details_page.dart';
@@ -91,7 +93,22 @@ class ProductListLoaded extends StatelessWidget {
                 ),
               ),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<CartBloc>().add(OnCartAdd(productList[index]));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      duration: Duration(seconds: 2),
+                      backgroundColor: Colors.green,
+                      content: Text(
+                        'Added to cart!',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   surfaceTintColor: Colors.red,
                   backgroundColor: Colors.red,

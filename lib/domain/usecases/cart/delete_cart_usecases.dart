@@ -7,7 +7,7 @@ class DeleteCartUsecases {
 
   DeleteCartUsecases({required this.deleteCartRepository});
 
-  Future<Either<Failure, bool>> execute(String slug) {
-    return deleteCartRepository.deleteCartProduct(slug);
+  Future<Either<Failure, bool>> execute(int primaryId) {
+    return deleteCartRepository.deleteCartProduct(primaryId);
   }
 }
