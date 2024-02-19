@@ -47,6 +47,15 @@ class ProductDetailsPage extends StatelessWidget {
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 20),
+                    Text(
+                      state.result.content,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 124, 124, 124),
                       ),
                     ),
                     const SizedBox(height: 20),
