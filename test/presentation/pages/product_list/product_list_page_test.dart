@@ -9,6 +9,9 @@ import 'package:tr_store/domain/entities/product.dart';
 import 'package:tr_store/presentation/bloc/cart/cart_bloc.dart';
 import 'package:tr_store/presentation/bloc/cart/cart_event.dart';
 import 'package:tr_store/presentation/bloc/cart/cart_state.dart';
+import 'package:tr_store/presentation/bloc/network/network_bloc.dart';
+import 'package:tr_store/presentation/bloc/network/network_event.dart';
+import 'package:tr_store/presentation/bloc/network/network_state.dart';
 import 'package:tr_store/presentation/bloc/products/products_bloc.dart';
 import 'package:tr_store/presentation/bloc/products/products_event.dart';
 import 'package:tr_store/presentation/bloc/products/products_state.dart';
@@ -19,12 +22,17 @@ class MockProductBloc extends MockBloc<ProductsEvent, ProductsState>
 
 class MockCartBloc extends MockBloc<CartEvent, CartState> implements CartBloc {}
 
+class MockNetworkBloc extends MockBloc<NetworkEvent, NetworkState>
+    implements NetworkBloc {}
+
 void main() {
   late MockProductBloc mockProductBloc;
   late MockCartBloc mockCartBloc;
+  late MockNetworkBloc mockNetworkBloc;
   setUp(() {
     mockProductBloc = MockProductBloc();
     mockCartBloc = MockCartBloc();
+    mockNetworkBloc = MockNetworkBloc();
     HttpOverrides.global = null;
   });
 
@@ -33,6 +41,7 @@ void main() {
       providers: [
         BlocProvider<ProductsBloc>(create: (_) => mockProductBloc),
         BlocProvider<CartBloc>(create: (_) => mockCartBloc),
+        BlocProvider<NetworkBloc>(create: (_) => mockNetworkBloc),
       ],
       child: MaterialApp(
         home: body,
@@ -59,6 +68,7 @@ void main() {
     (widgetTester) async {
       //arrange
       when(() => mockProductBloc.state).thenReturn(ProductsEmpty());
+      when(() => mockNetworkBloc.state).thenReturn(NetworkConnected());
       when(() => mockCartBloc.state).thenReturn(const CartLoaded([]));
 
       //act
@@ -74,6 +84,7 @@ void main() {
     (widgetTester) async {
       //arrange
       when(() => mockProductBloc.state).thenReturn(ProductsLoading());
+      when(() => mockNetworkBloc.state).thenReturn(NetworkConnected());
       when(() => mockCartBloc.state).thenReturn(const CartLoaded([]));
 
       //act
@@ -92,6 +103,7 @@ void main() {
       //arrange
       when(() => mockProductBloc.state)
           .thenReturn(const ProductsLoaded([testProduct]));
+      when(() => mockNetworkBloc.state).thenReturn(NetworkConnected());
       when(() => mockCartBloc.state).thenReturn(const CartLoaded([]));
 
       //act
