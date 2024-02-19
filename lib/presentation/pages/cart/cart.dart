@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class Cart extends StatelessWidget {
                               right: 18,
                               top: 10,
                             ),
-                            child: Text(
+                            child: AutoSizeText(
                               productList[index].title,
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,

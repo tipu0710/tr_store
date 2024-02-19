@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class ProductListLoaded extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 18.0, right: 18, top: 10),
-                  child: Text(
+                  child: AutoSizeText(
                     productList[index].title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -81,7 +82,7 @@ class ProductListLoaded extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 18.0, right: 18, top: 10),
+                padding: const EdgeInsets.only(left: 18.0, right: 18, top: 2),
                 child: Text(
                   "${productList[index].userId}৳",
                   maxLines: 2,
