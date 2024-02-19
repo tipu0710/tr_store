@@ -15,6 +15,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       image: json['image'] as String,
       thumbnail: json['thumbnail'] as String,
       userId: json['userId'] as int,
+      count: json['count'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
@@ -27,4 +28,5 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'image': instance.image,
       'thumbnail': instance.thumbnail,
       'userId': instance.userId,
+      'count': instance.count,
     };

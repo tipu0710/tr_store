@@ -13,6 +13,7 @@ class ProductModel extends ProductEntity {
     required super.image,
     required super.thumbnail,
     required super.userId,
+    super.count = 0,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
